@@ -1,0 +1,128 @@
+{
+	"name": "php-xdebug",
+	"displayName": "PHP Xdebug",
+	"version": "0.0.7",
+	"publisher": "kakumei",
+	"description": "php xdebug configuration for VS Code.",
+	"icon": "image/icon.png",
+	"author": {
+		"name": "kakumei",
+		"email": "fujiyama@kakumei.jp"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/hagishi/vscode-php-xdebug"
+	},
+	"bugs": {
+		"url": "https://github.com/hagishi/vscode-php-xdebug/issues"
+	},
+	"license": "MIT",
+	"keywords": [
+		"php",
+		"docker"
+	],
+	"engines": {
+		"vscode": "^1.34.0",
+		"node": "^8.9.3"
+	},
+	"categories": [
+		"Debuggers"
+	],
+	"extensionDependencies": [
+		"felixfbecker.php-debug"
+	],
+	"private": true,
+	"scripts": {
+		"prepublish": "tsc -p ./src",
+		"compile": "tsc -p ./src",
+		"tslint": "tslint ./src/**/*.ts",
+		"watch": "tsc -w -p ./src",
+		"test": "mocha -u tdd ./out/tests/",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"package": "vsce package",
+		"publish": "vsce publish"
+	},
+	"dependencies": {
+		"await-notify": "1.0.1",
+		"vscode-debugadapter": "1.34.0"
+	},
+	"devDependencies": {
+		"@types/node": "12.0.2",
+		"@types/mocha": "5.2.6",
+		"typescript": "3.4.5",
+		"mocha": "5.2.0",
+		"vscode": "1.1.34",
+		"vscode-debugadapter-testsupport": "1.34.0",
+		"tslint": "5.16.0",
+		"vsce": "1.62.0"
+	},
+	"main": "./out/extension",
+	"activationEvents": [
+		"onDebug"
+	],
+	"contributes": {
+		"breakpoints": [
+			{
+				"language": "php"
+			}
+		],
+		"debuggers": [
+			{
+				"type": "php-xdebug",
+				"label": "PHP Xdebug",
+				"runtime": "node",
+				"languages": [
+					"php"
+				],
+				"configurationSnippets": [
+					{
+						"label": "PHP Listen for XDebug",
+						"body": {
+							"name": "Listen for XDebug",
+							"type": "php",
+							"request": "launch",
+							"port": 9000
+						}
+					},
+					{
+						"label": "PHP Launch currently open script",
+						"body": {
+							"name": "Launch currently open script",
+							"type": "php",
+							"request": "launch",
+							"program": "${file}",
+							"cwd": "${fileDirname}",
+							"port": 9000
+						}
+					},
+					{
+						"label": "PHP Xdebug for Docker",
+						"body": {
+							"name": "Xdebug for Docker",
+							"type": "php",
+							"request": "launch",
+							"port": 9000,
+							"pathMappings": {
+								"${1:dockerPath}": "^\"\\${workspaceFolder}\""
+							}
+						}
+					}
+				]
+			}
+		]
+	},
+	"__metadata": {
+		"id": "1868cec4-bc79-445e-854d-52d52e12f1fe",
+		"publisherId": "49d737b7-fac2-4d38-a3c2-dd307dda3ca8",
+		"publisherDisplayName": "kakumei",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"isPreReleaseVersion": false,
+		"hasPreReleaseVersion": false,
+		"installedTimestamp": 1734486471904,
+		"pinned": false,
+		"preRelease": false,
+		"source": "gallery",
+		"size": 549396
+	}
+}
